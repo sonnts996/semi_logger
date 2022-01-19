@@ -15,7 +15,7 @@ semi_exception log
 Add dependency to your pubspec.yaml:
  
 ```yaml
-  semi_logger: 'any'
+semi_logger: 'any'
 ```
 
 ## Usage
@@ -28,26 +28,26 @@ import 'package:semi_logger/semi_logger.dart';
 
 Set up:
 ```dart
-  SemiLogger.setup(
-    name: 'Semi Logger Test',
-    debugMode: true,
-    styleData: SemiLogStyleData(),
-  );
+SemiLogger.setup(
+  name: 'Semi Logger Test',
+  debugMode: true,
+  styleData: SemiLogStyleData(),
+);
 ```
 
 Print log:
 ```dart
-  SemiLogger().log(message: 'Hello World', level: SemiLogLevel.info);
+SemiLogger().log(message: 'Hello World', level: SemiLogLevel.info);
 ```
 
 or
 ```dart
-  SemiLogLevel.info.log('Hello World');
+SemiLogLevel.info.log('Hello World');
 ```
 
 You can override log name with SemiLogger.instance()
 ```dart
-  SemiLogger.instance(name: 'Hello').i('Hello World');
+SemiLogger.instance(name: 'Hello').i('Hello World');
 ```
 
 ## Features and bugs

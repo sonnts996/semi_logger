@@ -12,8 +12,11 @@ semi_exception log
 
 ## Getting started
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+Add dependency to your pubspec.yaml:
+ 
+```yaml
+  semi_logger: 'any'
+```
 
 ## Usage
 

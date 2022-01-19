@@ -1,12 +1,12 @@
 ## Features
 
-Logger with colorful
+Logger with colorful for console.
 
-log data:
+- log data:
 
 ![block](https://raw.githubusercontent.com/sonnts996/assets/main/semi_logger/semi_logger_block.png)
 
-semi_exception log
+- semi_exception log
 
 ![semi_exception](https://raw.githubusercontent.com/sonnts996/assets/main/semi_logger/semi_logger_error.png)
 
@@ -52,6 +52,6 @@ SemiLogger.instance(name: 'Hello').i('Hello World');
 
 ## Features and bugs
 
-Please file feature requests and bugs at the [issue tracker][https://github.com/sonnts996/semi_logger/issues].
+Please file feature requests and bugs at the [issue tracker](https://github.com/sonnts996/semi_logger/issues).
 
 

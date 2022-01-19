@@ -1,40 +1,25 @@
 /*
- Created by Thanh Son on 19/01/2022.
+ Created by Thanh Son on 1/19/2022.
  Copyright (c) 2022 . All rights reserved.
 */
-import 'package:semi_exception/src/logger/log_colored.dart' as colored;
 
-enum SemiLogLevel {
-  header,
-  end,
-  start,
-  debug,
-  warning,
-  error,
-  info,
-  success,
-  fail,
-}
+part of 'semi_log_style.dart';
 
+/// Your styles of logger
 class SemiLogStyleData {
   const SemiLogStyleData({
-    this.header = const SemiLogStyle(
-        color: colored.ANSIStyles.white, bg: colored.ANSIStyles.bgLightRed),
-    this.start = const SemiLogStyle(
-        color: colored.ANSIStyles.white, bg: colored.ANSIStyles.bgMagenta),
-    this.end = const SemiLogStyle(
-        color: colored.ANSIStyles.white, bg: colored.ANSIStyles.bgMagenta),
+    this.header = const SemiLogStyle(color: colored.ANSIStyles.lightGray),
+    this.separator = const SemiLogStyle(color: colored.ANSIStyles.magenta),
     this.debug = const SemiLogStyle(),
     this.warning = const SemiLogStyle(color: colored.ANSIStyles.yellow),
     this.error = const SemiLogStyle(color: colored.ANSIStyles.red),
     this.info = const SemiLogStyle(),
-    this.fail = const SemiLogStyle(color: colored.ANSIStyles.magenta),
+    this.fail = const SemiLogStyle(color: colored.ANSIStyles.lightRed),
     this.success = const SemiLogStyle(color: colored.ANSIStyles.green),
   });
 
   final SemiLogStyle header;
-  final SemiLogStyle start;
-  final SemiLogStyle end;
+  final SemiLogStyle separator;
   final SemiLogStyle debug;
   final SemiLogStyle warning;
   final SemiLogStyle error;
@@ -42,14 +27,13 @@ class SemiLogStyleData {
   final SemiLogStyle success;
   final SemiLogStyle fail;
 
+  /// return your style with level
   SemiLogStyle getStyle(SemiLogLevel level) {
     switch (level) {
       case SemiLogLevel.header:
         return header;
-      case SemiLogLevel.end:
-        return end;
-      case SemiLogLevel.start:
-        return start;
+      case SemiLogLevel.separator:
+        return separator;
       case SemiLogLevel.debug:
         return debug;
       case SemiLogLevel.warning:
@@ -62,24 +46,13 @@ class SemiLogStyleData {
         return success;
       case SemiLogLevel.fail:
         return fail;
+      case SemiLogLevel.print:
+        return info;
     }
   }
 
+  /// return your string with code style
   String apply(String text, SemiLogLevel level) {
     return getStyle(level).apply(text);
-  }
-}
-
-class SemiLogStyle {
-  const SemiLogStyle({
-    this.color = colored.ANSIStyles.defaultStyle,
-    this.bg = colored.ANSIStyles.bgDefault,
-  });
-
-  final colored.ANSIStyles color;
-  final colored.ANSIStyles bg;
-
-  String apply(String text) {
-    return colored.apply(text, color: color, bg: bg);
   }
 }

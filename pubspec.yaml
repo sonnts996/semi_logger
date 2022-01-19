@@ -1,7 +1,7 @@
-name: semi_exception
-description: Default Dart Exception and Logger.
+name: semi_logger
+description: Color Logger and Base Exception for dart and flutter project.
 version: 1.0.0
-repository: https://github.com/sonnts996/semi_exception
+repository: https://github.com/sonnts996/semi_logger
 
 environment:
   sdk: '>=2.12.4 <3.0.0'

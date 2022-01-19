@@ -4,48 +4,134 @@
  Powered by https://github.com/iamsalnikov/colorize open source
 */
 
+/// Base on ANSI Escape code,
+/// this enum define the support print log style and color
+///
 enum ANSIStyles {
+  // reset char
   reset,
+
+  // fontStyle
   bold,
+
+  // fontStyle
   dark,
+
+  // fontStyle
   italic,
+
+  // fontStyle
   underline,
+
+  // fontStyle
   blink,
+
+  // fontStyle
   reverse,
+
+  // fontStyle
   concealed,
+
+  // fontStyle
   defaultStyle,
+
+  // text color
   black,
+
+  // text color
   red,
+
+  // text color
   green,
+
+  // text color
   yellow,
+
+  // text color
   blue,
+
+  // text color
   magenta,
+
+  // text color
   cyan,
+
+  // text color
   lightGray,
-  darkGray,
-  lightRed,
-  lightGreen,
-  lightYellow,
-  lightBlue,
-  lightMagenta,
+
+  // text color
   lightCyan,
+
+  // text color
+  darkGray,
+
+  // text color
+  lightRed,
+
+  // text color
+  lightGreen,
+
+  // text color
+  lightYellow,
+
+  // text color
+  lightBlue,
+
+  // text color
+  lightMagenta,
+
+  // text color
   white,
+
+  // text background
   bgDefault,
+
+  // text background
   bgBlack,
+
+  // text background
   bgRed,
+
+  // text background
   bgGreen,
+
+  // text background
   bgYellow,
+
+  // text background
   bgBlue,
+
+  // text background
   bgMagenta,
+
+  // text background
   bgCyan,
+
+  // text background
   bgLightGray,
+
+  // text background
   bgDarkGray,
+
+  // text background
   bgLightRed,
+
+  // text background
   bgLightGreen,
+
+  // text background
   bgLightYellow,
+
+  // text background
   bgLightBlue,
+
+  // text background
   bgLightMagenta,
+
+  // text background
   bgLightCyan,
+
+  // text background
   bgWhite,
 }
 
@@ -141,15 +227,23 @@ String _getStyle(ANSIStyles style) {
 /// return text with ANSI format
 /// example: print('\u{1B}[31m\u{1B}[103mHello World!\u{1B}[0m');
 ///
-String apply(String text, {ANSIStyles? color, ANSIStyles? bg}) {
+String apply(
+  String text, {
+  ANSIStyles? color,
+  ANSIStyles? bg,
+  ANSIStyles? fontStyle,
+}) {
   String rs = text;
 
   if (color != null) {
     rs = '\u{1B}[${_getStyle(color)}m' + rs;
-    if (bg != null) {
-      rs = '\u{1B}[${_getStyle(bg)}m' + rs;
-    }
-    rs = rs + '\u{1B}[0m';
   }
+  if (bg != null) {
+    rs = '\u{1B}[${_getStyle(bg)}m' + rs;
+  }
+  if (fontStyle != null) {
+    rs = '\u{1B}[${_getStyle(fontStyle)}m' + rs;
+  }
+  rs = rs + '\u{1B}[0m';
   return rs;
 }

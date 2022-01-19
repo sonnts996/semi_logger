@@ -3,10 +3,10 @@
 Logger with colorful
 
 log data:
-![block](https://raw.githubusercontent.com/sonnts996/assets/main/semi_logger_block.png)
+![block](https://raw.githubusercontent.com/sonnts996/assets/main/semi_logger/semi_logger_block.png)
 
-semi_exception
-![semi_exception](https://raw.githubusercontent.com/sonnts996/assets/main/semi_logger_error.png)
+semi_exception log
+![semi_exception](https://raw.githubusercontent.com/sonnts996/assets/main/semi_logger/semi_logger_error.png)
 
 ## Getting started
 

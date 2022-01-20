@@ -26,6 +26,7 @@ void main() {
     name: 'Semi Logger Test',
     debugMode: true,
     styleData: SemiLogStyleData(),
+    decoration: false,
   );
   SemiLogger().block(
     [

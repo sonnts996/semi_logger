@@ -22,6 +22,7 @@ class SemiLogger {
     required this.styleData,
     required this.separatorChar,
     required this.separatorLength,
+    required this.decoration,
   });
 
   static SemiLogger get instance => _inst;
@@ -34,14 +35,15 @@ class SemiLogger {
     SemiLogStyleData styleData = const SemiLogStyleData(),
     core.String lineChar = '=',
     core.int lineLength = 50,
+    core.bool decoration = true,
   }) {
     _inst = SemiLogger._(
-      name: name,
-      debugMode: debugMode,
-      styleData: styleData,
-      separatorChar: lineChar,
-      separatorLength: lineLength,
-    );
+        name: name,
+        debugMode: debugMode,
+        styleData: styleData,
+        separatorChar: lineChar,
+        separatorLength: lineLength,
+        decoration: decoration);
     return _inst;
   }
 
@@ -57,7 +59,8 @@ class SemiLogger {
           debugMode: debugMode ?? _inst.debugMode,
           styleData: _inst.styleData,
           separatorChar: lineChar ?? _inst.separatorChar,
-          separatorLength: lineLength ?? _inst.separatorLength);
+          separatorLength: lineLength ?? _inst.separatorLength,
+          decoration: _inst.decoration);
 
   /// The logger name, text will appear on log header
   final core.String name;
@@ -73,6 +76,9 @@ class SemiLogger {
 
   /// The number char in line separator
   final core.int separatorLength;
+
+  /// Enable decoration mode,
+  final core.bool decoration;
 
   core.String get _header {
     return styleData.header.apply('[$name]');
@@ -99,7 +105,7 @@ class SemiLogger {
           SemiLogLevel.print,
           SemiLogLevel.separator
         ].contains(level)) {
-      if (level == SemiLogLevel.print) {
+      if (level == SemiLogLevel.print || !decoration) {
         print(message);
       } else if (hasHeader) {
         print('$_header ${styleData.apply(message, level)}');
@@ -112,7 +118,7 @@ class SemiLogger {
   /// print a line with custom
   void custom(List<SemiLogContent> contents,
       {String separator = ' ', hasHeader = true}) {
-    String msg = contents.map((e) => e.apply()).join(separator);
+    String msg = contents.map((e) => e.apply(decoration)).join(separator);
     if (hasHeader) {
       print('$_header $msg');
     } else {

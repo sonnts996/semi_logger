@@ -56,7 +56,9 @@ class SemiLogContent {
   final String _msg;
 
   /// return your string with code style
-  String apply() {
-    return colored.apply(_msg, color: color, bg: bg, fontStyle: fontStyle);
+  String apply([decoration = true]) {
+    return decoration
+        ? colored.apply(_msg, color: color, bg: bg, fontStyle: fontStyle)
+        : _msg;
   }
 }

@@ -20,7 +20,7 @@ extension SemiLogLevelX on SemiLogLevel {
       [String separator = ' ']) {
     return SemiLogLevelData(
       SemiLogLevel.print,
-      contents.map((e) => e.apply()).join(separator),
+      contents.map((e) => e.apply(SemiLogger().decoration)).join(separator),
     );
   }
 
@@ -36,8 +36,8 @@ class SemiLogLevelData {
 
   factory SemiLogLevelData.fromContents(List<SemiLogContent> contents,
       [String separator = ' ']) {
-    return SemiLogLevelData(
-        SemiLogLevel.print, contents.map((e) => e.apply()).join(separator));
+    return SemiLogLevelData(SemiLogLevel.print,
+        contents.map((e) => e.apply(SemiLogger().decoration)).join(separator));
   }
 
   /// massage use for block print

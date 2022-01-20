@@ -30,7 +30,7 @@ class SemiLogStyle {
     return colored.apply(text, color: color, bg: bg, fontStyle: fontStyle);
   }
 
-  SemiLogContent toContent(String message){
+  SemiLogContent toContent(String message) {
     return SemiLogContent(message, color: color, bg: bg, fontStyle: fontStyle);
   }
 }

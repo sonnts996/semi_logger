@@ -3,9 +3,9 @@
  Copyright (c) 2022 . All rights reserved.
 */
 
-
 import 'package:semi_logger/src/logger/level/semi_log_level.dart';
-import 'package:semi_logger/src/logger/style/semi_log_style.dart' show SemiLogContent;
+import 'package:semi_logger/src/logger/style/semi_log_style.dart'
+    show SemiLogContent;
 import 'package:semi_logger/src/logger/semi_logger.dart';
 
 /// Depend on Exception,
@@ -40,31 +40,21 @@ class SemiException implements Exception {
   /// Log to console this exception
   void print({SemiLogger? logger, bool debugMode = true}) {
     if (debugMode) {
-      var _logger =
-          logger ?? SemiLogger.instance(name: errorCode, debugMode: debugMode);
-
+      var _logger = logger ?? SemiLogger(name: errorCode, debugMode: debugMode);
       final messages = <SemiLogLevelData>[];
-      final contents = <SemiLogContent>[];
       if (message != null) {
-        contents.add(SemiLogLevel.error.toContent(_logger, message!));
+        messages.add(SemiLogLevel.error.msg(message!));
       }
       if (time != null) {
-        contents.add(SemiLogLevel.info.toContent(_logger, 'at ${time!.toIso8601String()}'));
-      }
-      if(contents.isNotEmpty){
-        messages.add(SemiLogLevelData.fromContents(contents));
+        messages.add(SemiLogLevel.error.msg('at ${time!.toIso8601String()}'));
       }
       if (error != null) {
-        messages.add(SemiLogLevel.separator.msg('With error: '));
         messages.add(SemiLogLevel.print.msg(error.toString()));
       }
       if (stackTrace != null) {
-        if (error == null) {
-          messages.add(SemiLogLevel.separator.msg('StackTrace: '));
-        }
         messages.add(SemiLogLevel.print.msg(stackTrace.toString()));
       }
-      _logger.block(messages);
+      _logger.block(messages, headerSeparator: true);
     }
   }
 

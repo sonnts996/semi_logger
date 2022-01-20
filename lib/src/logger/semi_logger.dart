@@ -24,7 +24,7 @@ class SemiLogger {
     required this.separatorLength,
   });
 
-  factory SemiLogger() => _inst;
+  static SemiLogger get instance => _inst;
 
   /// Define your logger,
   /// it will be overrides all next logger print
@@ -47,20 +47,17 @@ class SemiLogger {
 
   /// When your want to define a special logger,
   /// it will not change when re-setup logger
-  factory SemiLogger.instance({
-    core.String? name = 'semi-log',
-    core.bool? debugMode = true,
-    core.String? lineChar = '=',
-    core.int? lineLength = 50,
-  }) {
-    return SemiLogger._(
-      name: name ?? _inst.name,
-      debugMode: debugMode ?? _inst.debugMode,
-      styleData: _inst.styleData,
-      separatorChar: lineChar ?? _inst.separatorChar,
-      separatorLength: lineLength ?? _inst.separatorLength,
-    );
-  }
+  factory SemiLogger(
+          {core.String? name = 'semi-log',
+          core.bool? debugMode = true,
+          core.String? lineChar = '=',
+          core.int? lineLength = 50}) =>
+      SemiLogger._(
+          name: name ?? _inst.name,
+          debugMode: debugMode ?? _inst.debugMode,
+          styleData: _inst.styleData,
+          separatorChar: lineChar ?? _inst.separatorChar,
+          separatorLength: lineLength ?? _inst.separatorLength);
 
   /// The logger name, text will appear on log header
   final core.String name;
@@ -167,9 +164,13 @@ class SemiLogger {
   }
 
   /// print the multi line message
-  void block(List<SemiLogLevelData> messages,
-      {core.String? linePrefix, core.bool lineNumber = false}) {
-    log(message: '');
+  void block(
+    List<SemiLogLevelData> messages, {
+    core.String? linePrefix,
+    core.bool lineNumber = false,
+    bool headerSeparator = false,
+  }) {
+    headerSeparator ? separator('', true) : log(message: '');
     int padRight = messages.length.toString().length;
     for (int i = 0; i < messages.length; i++) {
       final data = messages[i];

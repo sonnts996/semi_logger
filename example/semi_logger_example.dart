@@ -14,12 +14,12 @@ void helloWorld(bool semi) {
 }
 
 void main() {
-  // print('\u{1B}[31m\u{1B}[103mHello World!\u{1B}[0m');
   const content = [
     SemiLogContent('Hello, '),
     SemiLogContent('this text is on', color: ANSIStyles.lightGreen),
     SemiLogContent('Custom', fontStyle: ANSIStyles.bold),
-    SemiLogContent('print test!', fontStyle: ANSIStyles.bold, color: ANSIStyles.red),
+    SemiLogContent('print test!',
+        fontStyle: ANSIStyles.bold, color: ANSIStyles.red),
   ];
 
   SemiLogger.setup(

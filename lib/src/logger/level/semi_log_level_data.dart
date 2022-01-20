@@ -24,8 +24,8 @@ extension SemiLogLevelX on SemiLogLevel {
     );
   }
 
-  SemiLogContent toContent(SemiLogger logger, String message) {
-    return logger.styleData.getStyle(this).toContent(message);
+  SemiLogContent toContent(String message) {
+    return SemiLogger().styleData.getStyle(this).toContent(message);
   }
 }
 
